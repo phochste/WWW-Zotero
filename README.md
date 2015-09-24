@@ -45,7 +45,6 @@ WWW::Zotero - Perl interface to the Zotero API
     my $data = $client->listCollectionItemsTop(user => '475425', collectionKey => 'QM6T3KHX');
     my $data = $client->listCollectionItemsTags(user => '475425', collectionKey => 'QM6T3KHX');
     my $data = $client->listSearches(user => '475425');
-    
 
 # CONFIGURATION
 

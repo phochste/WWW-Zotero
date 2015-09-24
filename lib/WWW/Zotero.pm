@@ -49,7 +49,7 @@ WWW::Zotero - Perl interface to the Zotero API
     my $data = $client->listCollectionItemsTop(user => '475425', collectionKey => 'QM6T3KHX');
     my $data = $client->listCollectionItemsTags(user => '475425', collectionKey => 'QM6T3KHX');
     my $data = $client->listSearches(user => '475425');
-    
+
 =cut
 
 use Moo;
@@ -266,7 +266,9 @@ Return the userID and premissions for the given API key.
 sub keyPermissions {
     my ($self,$key) = @_;
 
-    $key = $self->key unless defined($key);
+    $key = $self->key unless defined $key;
+
+    croak "keyPermissions: need key" unless defined $key;
 
     my $response = $self->_zotero_get_request("/keys/$key");
 
