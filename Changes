@@ -1,6 +1,8 @@
 Revision history for WWW-Zotero
 
 {{$NEXT}}
+
+0.03  2015-09-24 21:23:43 CEST
 	- Fixed tests
 	- Fixed undef responses 
 
