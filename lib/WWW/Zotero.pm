@@ -62,7 +62,7 @@ use Carp;
 use Log::Any ();
 use feature 'state';
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 CONFIGURATION
 
