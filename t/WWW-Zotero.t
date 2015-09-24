@@ -3,7 +3,6 @@
 use strict;
 use warnings;
 use Test::More;
-use Data::Dumper;
 
 my $key = $ENV{ZOTERO_API_KEY};
 
@@ -79,7 +78,7 @@ if ($ENV{RELEASE_TESTING}) {
 
 	sleep 1;
 	
-    {
+    if ($ENV{ZOTERO_API_KEY}) {
 		my $key = $client->keyPermissions();
 
 		is ref($key), 'HASH' , 'keyPermissions - got a hash';
