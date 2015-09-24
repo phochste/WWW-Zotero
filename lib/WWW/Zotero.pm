@@ -19,6 +19,37 @@ WWW::Zotero - Perl interface to the Zotero API
         print "%s\n" , $item->itemType;
     } 
 
+    my $data   = $client->itemFields();
+    my $data   = $client->itemTypeFields('book');
+    my $data   = $client->itemTypeCreatorTypes('book');
+    my $data   = $client->creatorFields();
+    my $data   = $client->itemTemplate('book');
+    my $key    = $client->keyPermissions();
+    my $groups = $client->userGroups($userID);
+
+    my $data   = $client->listItems(user => '475425', limit => 5);
+    my $data   = $client->listItems(user => '475425', format => 'atom');
+    my $generator = $client->listItems(user => '475425', generator => 1);
+
+    while (my $item = $generator->()) {
+        print "%s\n" , $item->{title};
+    }
+
+    my $data = $client->listItemsTop(user => '475425', limit => 5);
+    my $data = $client->listItemsTrash(user => '475425');
+    my $data = $client->getItem(user => '475425', itemKey => 'TTJFTW87');
+    my $data = $client->getItemTags(user => '475425', itemKey => 'X42A7DEE');
+    my $data = $client->listTags(user => '475425');
+    my $data = $client->listTags(user => '475425', tag => 'Biography');
+    my $data = $client->listCollections(user => '475425');
+    my $data = $client->listCollectionsTop(user => '475425');
+    my $data = $client->getCollection(user => '475425', collectionKey => 'A5G9W6AX');
+    my $data = $client->listSubCollections(user => '475425', collectionKey => 'QM6T3KHX');
+    my $data = $client->listCollectionItems(user => '475425', collectionKey => 'QM6T3KHX');
+    my $data = $client->listCollectionItemsTop(user => '475425', collectionKey => 'QM6T3KHX');
+    my $data = $client->listCollectionItemsTags(user => '475425', collectionKey => 'QM6T3KHX');
+    my $data = $client->listSearches(user => '475425');
+    
 =cut
 
 use Moo;
