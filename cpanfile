@@ -4,8 +4,6 @@ on 'test', sub {
   requires 'Test::Simple', '1.001003';
   requires 'Test::More', '1.001003';
   requires 'Test::Exception','0.32';
-  requires 'Log::Log4perl','0';
-  requires 'Log::Any::Adapter'.'0';
 };
 
 requires 'Moo', '>=1.0';

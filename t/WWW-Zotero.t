@@ -6,12 +6,10 @@ use Test::More;
 
 my $key = $ENV{ZOTERO_API_KEY};
 
-if ($ENV{RELEASE_TESTING}) {
-	use Log::Any::Adapter;
-	use Log::Log4perl;
-	Log::Any::Adapter->set('Log4perl');
-	Log::Log4perl::init('./log4perl.conf');
-}
+#	use Log::Any::Adapter;
+#	use Log::Log4perl;
+#	Log::Any::Adapter->set('Log4perl');
+#	Log::Log4perl::init('./log4perl.conf');
 
 BEGIN {
     use_ok 'WWW::Zotero';
