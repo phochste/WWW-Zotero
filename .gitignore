@@ -1,0 +1,6 @@
+WWW-Zotero-*
+/.build
+!META.json
+LICENSE
+local
+cpanfile.snapshot
