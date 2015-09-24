@@ -71,7 +71,7 @@ if ($ENV{RELEASE_TESTING}) {
 		my $data = $client->itemTemplate('book');
 
 		is ref($data), 'HASH' , 'itemTemplate - got a hash';
-		ok keys $data > 0 , 'itemTemplate - got a hash with content';
+		ok keys %$data > 0 , 'itemTemplate - got a hash with content';
 	}
 
 	sleep 1;

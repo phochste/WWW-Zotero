@@ -184,6 +184,8 @@ sub itemTypes {
 
     my $response = $self->_zotero_get_request('/itemTypes');
 
+    return undef unless $response;
+
     decode_json $response->responseContent;
 }
 
@@ -196,6 +198,8 @@ sub itemFields {
     my ($self) = @_;
 
     my $response = $self->_zotero_get_request('/itemFields');
+
+    return undef unless $response;
 
     decode_json $response->responseContent;
 }
@@ -212,6 +216,8 @@ sub itemTypeFields {
 
     my $response = $self->_zotero_get_request('/itemTypeFields', itemType => $itemType);
 
+    return undef unless $response;
+
     decode_json $response->responseContent;
 }
 
@@ -227,6 +233,8 @@ sub itemTypeCreatorTypes {
 
     my $response = $self->_zotero_get_request('/itemTypeCreatorTypes', itemType => $itemType);
 
+    return undef unless $response;
+
     decode_json $response->responseContent;
 }
 
@@ -239,6 +247,8 @@ sub creatorFields {
     my ($self) = @_;
 
     my $response = $self->_zotero_get_request('/creatorFields');
+
+    return undef unless $response;
 
     decode_json $response->responseContent;
 }
@@ -254,6 +264,8 @@ sub itemTemplate {
     croak "itemTemplate: need itemType" unless defined $itemType;
 
     my $response = $self->_zotero_get_request('/items/new', itemType => $itemType);
+
+    return undef unless $response;
 
     decode_json $response->responseContent;
 }
@@ -272,6 +284,8 @@ sub keyPermissions {
 
     my $response = $self->_zotero_get_request("/keys/$key");
 
+    return undef unless $response;
+
     decode_json $response->responseContent;
 }
 
@@ -287,6 +301,8 @@ sub userGroups {
 
     my $response = $self->_zotero_get_request("/users/$userID/groups");
 
+    return undef unless $response;
+    
     decode_json $response->responseContent;
 }
 
