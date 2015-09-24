@@ -82,7 +82,7 @@ if ($ENV{RELEASE_TESTING}) {
 		my $key = $client->keyPermissions();
 
 		is ref($key), 'HASH' , 'keyPermissions - got a hash';
-		ok keys $key > 0 , 'keyPermissions - got a hash with content';
+		ok keys %$key > 0 , 'keyPermissions - got a hash with content';
 
 		my $userID = $key->{userID};
 
