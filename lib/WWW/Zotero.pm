@@ -174,6 +174,34 @@ sub _zotero_get_request {
 
 =head1 METHODS
 
+=cut
+
+=head2 username2userID 
+
+Find the userID based on a username
+
+=cut
+sub username2userID {
+    my ($self,$username) = @_;
+
+    croak "username2userID: need username" unless defined $username;
+
+    my $url       = sprintf "https://www.zotero.org/%s" , uri_escape($username);
+
+    my $response  = $self->client->GET($url);
+
+    return undef unless $response->responseCode() eq '200';
+
+    my $content = $response->responseContent;
+
+    if ($content =~ /profileUserID:(\d+)/) {
+        return $1;
+    }
+    else {
+        return undef;
+    }
+}
+
 =head2 itemTypes()
 
 Get all item types. Returns a Perl array.

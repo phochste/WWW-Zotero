@@ -1,7 +1,8 @@
 Revision history for WWW-Zotero
 
 {{$NEXT}}
-
+    - Adding support to find the userID from a username
+    
 0.03  2015-09-24 21:23:43 CEST
 	- Fixed tests
 	- Fixed undef responses 

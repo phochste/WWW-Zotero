@@ -67,6 +67,10 @@ WWW::Zotero - Perl interface to the Zotero API
 
 # METHODS
 
+## username2userID 
+
+Find the userID based on a username
+
 ## itemTypes()
 
 Get all item types. Returns a Perl array.
