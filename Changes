@@ -1,6 +1,8 @@
 Revision history for WWW-Zotero
 
 {{$NEXT}}
+
+0.04  2017-05-18 17:00:29 CEST
     - Adding support to find the userID from a username
     - Fixing last item bug (thanks François Rappaz)
 
