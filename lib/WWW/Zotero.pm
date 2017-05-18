@@ -1,6 +1,6 @@
 package WWW::Zotero;
 
-=pod 
+=pod
 
 =head1 NAME
 
@@ -14,10 +14,10 @@ WWW::Zotero - Perl interface to the Zotero API
     my $client = WWW::Zotero->new(key => 'API-KEY');
 
     my $data = $client->itemTypes();
-    
+
     for my $item (@$data) {
         print "%s\n" , $item->itemType;
-    } 
+    }
 
     my $data   = $client->itemFields();
     my $data   = $client->itemTypeFields('book');
@@ -68,7 +68,7 @@ our $VERSION = '0.03';
 
 =over 4
 
-=item baseurl 
+=item baseurl
 
 The base URL for all API requests. Default 'https://api.zotero.org'.
 
@@ -101,7 +101,7 @@ sub _build_client {
     my ($self) = @_;
     my $client = REST::Client->new();
 
-    $self->log->debug("< Zotero-API-Version: " . $self->version); 
+    $self->log->debug("< Zotero-API-Version: " . $self->version);
     $client->addHeader('Zotero-API-Version', $self->version);
 
     if (defined $self->key) {
@@ -162,7 +162,7 @@ sub _zotero_get_request {
         $self->sleep($retryAfter // 60);
         return undef;
     }
-    
+
     $self->log->debug("> Content: " . $response->responseContent);
 
     $self->code($code);
@@ -176,7 +176,7 @@ sub _zotero_get_request {
 
 =cut
 
-=head2 username2userID 
+=head2 username2userID
 
 Find the userID based on a username
 
@@ -194,7 +194,7 @@ sub username2userID {
 
     my $content = $response->responseContent;
 
-    if ($content =~ /profileUserID:(\d+)/) {
+    if ($content =~ /profileUserID:\s*(\d+)/) {
         return $1;
     }
     else {
@@ -330,7 +330,7 @@ sub userGroups {
     my $response = $self->_zotero_get_request("/users/$userID/groups");
 
     return undef unless $response;
-    
+
     decode_json $response->responseContent;
 }
 
@@ -340,13 +340,13 @@ sub userGroups {
 
 List all items for a user or ar group. Optionally provide a list of options:
 
-    sort      - dateAdded, dateModified, title, creator, type, date, publisher, 
-           publicationTitle, journalAbbreviation, language, accessDate, 
+    sort      - dateAdded, dateModified, title, creator, type, date, publisher,
+           publicationTitle, journalAbbreviation, language, accessDate,
            libraryCatalog, callNumber, rights, addedBy, numItems (default dateModified)
     direction - asc, desc
     limit     - integer 1-100* (default 25)
     start     - integer
-    format    - perl, atom, bib, json, keys, versions , bibtex , bookmarks, 
+    format    - perl, atom, bib, json, keys, versions , bibtex , bookmarks,
                 coins, csljson, mods, refer, rdf_bibliontology , rdf_dc ,
                 rdf_zotero, ris , tei , wikipedia (default perl)
 
@@ -355,7 +355,7 @@ List all items for a user or ar group. Optionally provide a list of options:
         include   - bib, data
 
     when format => 'atom'
-    
+
         content   - bib, html, json
 
     when format => 'bib' or content => 'bib'
@@ -363,7 +363,7 @@ List all items for a user or ar group. Optionally provide a list of options:
         style     - chicago-note-bibliography, apa, ...  (see: https://www.zotero.org/styles/)
 
 
-    itemKey    - A comma-separated list of item keys. Valid only for item requests. Up to 
+    itemKey    - A comma-separated list of item keys. Valid only for item requests. Up to
                  50 items can be specified in a single request.
     itemType   - Item type search
     q          - quick search
@@ -371,11 +371,11 @@ List all items for a user or ar group. Optionally provide a list of options:
     since      - integer
     tag        - Tag search
 
-See: https://www.zotero.org/support/dev/web_api/v3/basics#user_and_group_library_urls 
+See: https://www.zotero.org/support/dev/web_api/v3/basics#user_and_group_library_urls
 for the search syntax.
 
 Returns a Perl HASH containing the total number of hits plus the results:
-    
+
     {
         total => '132',
         results => <data>
@@ -394,7 +394,7 @@ method to sequentially read the complete resultset. E.g.
 
 The format is implicit 'perl' in this case.
 
-=cut 
+=cut
 sub listItems {
     my ($self,%options) = @_;
 
@@ -411,10 +411,10 @@ sub _listItems {
 
     my $id   = defined $userID ? $userID : $groupID;
     my $type = defined $userID ? 'users' : 'groups';
-    
+
     my $generator = $options{generator};
     my $path      = $options{path};
-    
+
     delete $options{generator};
     delete $options{path};
     delete $options{user};
@@ -433,7 +433,7 @@ sub _listItems {
 
             return undef unless defined $response;
             return undef if $response->{total} == 0;
-            return undef if $options{start} + $idx + 1 >= $response->{total};
+            return undef if $options{start} + $idx + 1 > $response->{total};
 
             unless (defined $response->{results}->[$idx]) {
                 $options{start} += $options{limit};
@@ -484,7 +484,7 @@ sub _listItems_request {
 
 =head2 listItemsTop(user => $userID | group => $groupID, %options)
 
-The set of all top-level items in the library, excluding trashed items. 
+The set of all top-level items in the library, excluding trashed items.
 
 See 'listItems(...)' functions above for all the execution options.
 
@@ -497,7 +497,7 @@ sub listItemsTop {
 
 =head2 listItemsTrash(user => $userID | group => $groupID, %options)
 
-The set of items in the trash. 
+The set of items in the trash.
 
 See 'listItems(...)' functions above for all the execution options.
 
@@ -787,6 +787,10 @@ sub getSearch {
 
 Patrick Hochstenbach, C<< <patrick.hochstenbach at ugent.be> >>
 
+=head1 CONTRIBUTORS
+
+François Rappaz
+
 =head1 LICENSE AND COPYRIGHT
 
 Copyright 2015 Patrick Hochstenbach
@@ -800,5 +804,3 @@ See http://dev.perl.org/licenses/ for more information.
 =cut
 
 1;
-
-

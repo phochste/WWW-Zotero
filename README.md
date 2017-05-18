@@ -10,10 +10,10 @@ WWW::Zotero - Perl interface to the Zotero API
     my $client = WWW::Zotero->new(key => 'API-KEY');
 
     my $data = $client->itemTypes();
-    
+
     for my $item (@$data) {
         print "%s\n" , $item->itemType;
-    } 
+    }
 
     my $data   = $client->itemFields();
     my $data   = $client->itemTypeFields('book');
@@ -48,7 +48,7 @@ WWW::Zotero - Perl interface to the Zotero API
 
 # CONFIGURATION
 
-- baseurl 
+- baseurl
 
     The base URL for all API requests. Default 'https://api.zotero.org'.
 
@@ -67,7 +67,7 @@ WWW::Zotero - Perl interface to the Zotero API
 
 # METHODS
 
-## username2userID 
+## username2userID
 
 Find the userID based on a username
 
@@ -109,13 +109,13 @@ Return an array of the set of groups the current API key as access to.
 
 List all items for a user or ar group. Optionally provide a list of options:
 
-    sort      - dateAdded, dateModified, title, creator, type, date, publisher, 
-           publicationTitle, journalAbbreviation, language, accessDate, 
+    sort      - dateAdded, dateModified, title, creator, type, date, publisher,
+           publicationTitle, journalAbbreviation, language, accessDate,
            libraryCatalog, callNumber, rights, addedBy, numItems (default dateModified)
     direction - asc, desc
     limit     - integer 1-100* (default 25)
     start     - integer
-    format    - perl, atom, bib, json, keys, versions , bibtex , bookmarks, 
+    format    - perl, atom, bib, json, keys, versions , bibtex , bookmarks,
                 coins, csljson, mods, refer, rdf_bibliontology , rdf_dc ,
                 rdf_zotero, ris , tei , wikipedia (default perl)
 
@@ -124,7 +124,7 @@ List all items for a user or ar group. Optionally provide a list of options:
         include   - bib, data
 
     when format => 'atom'
-    
+
         content   - bib, html, json
 
     when format => 'bib' or content => 'bib'
@@ -132,7 +132,7 @@ List all items for a user or ar group. Optionally provide a list of options:
         style     - chicago-note-bibliography, apa, ...  (see: https://www.zotero.org/styles/)
 
 
-    itemKey    - A comma-separated list of item keys. Valid only for item requests. Up to 
+    itemKey    - A comma-separated list of item keys. Valid only for item requests. Up to
                  50 items can be specified in a single request.
     itemType   - Item type search
     q          - quick search
@@ -140,7 +140,7 @@ List all items for a user or ar group. Optionally provide a list of options:
     since      - integer
     tag        - Tag search
 
-See: https://www.zotero.org/support/dev/web\_api/v3/basics#user\_and\_group\_library\_urls 
+See: https://www.zotero.org/support/dev/web\_api/v3/basics#user\_and\_group\_library\_urls
 for the search syntax.
 
 Returns a Perl HASH containing the total number of hits plus the results:
@@ -165,13 +165,13 @@ The format is implicit 'perl' in this case.
 
 ## listItemsTop(user => $userID | group => $groupID, %options)
 
-The set of all top-level items in the library, excluding trashed items. 
+The set of all top-level items in the library, excluding trashed items.
 
 See 'listItems(...)' functions above for all the execution options.
 
 ## listItemsTrash(user => $userID | group => $groupID, %options)
 
-The set of items in the trash. 
+The set of items in the trash.
 
 See 'listItems(...)' functions above for all the execution options.
 

@@ -5,3 +5,4 @@ LICENSE
 local
 cpanfile.snapshot
 log4perl.conf
+.perl-version
