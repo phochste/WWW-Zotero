@@ -2,6 +2,8 @@ package WWW::Zotero;
 
 =pod
 
+=encoding utf-8
+
 =head1 NAME
 
 WWW::Zotero - Perl interface to the Zotero API

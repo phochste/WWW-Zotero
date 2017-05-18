@@ -283,6 +283,10 @@ Returns the saved search if found.
 
 Patrick Hochstenbach, `<patrick.hochstenbach at ugent.be>`
 
+# CONTRIBUTORS
+
+François Rappaz
+
 # LICENSE AND COPYRIGHT
 
 Copyright 2015 Patrick Hochstenbach
