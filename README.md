@@ -1,3 +1,5 @@
+We migrated to https://codeberg.org/phochste/WWW-Zotero
+
 # NAME
 
 WWW::Zotero - Perl interface to the Zotero API
